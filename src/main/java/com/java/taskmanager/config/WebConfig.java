@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Permite todos os endpoints
-                .allowedOrigins("http://localhost:5173", "https://task-manager-nsc1-git-main-gabriellas-projects-bb68f8bb.vercel.app/")
+                .allowedOrigins("http://localhost:5173", "https://task-manager-nsc1-git-main-gabriellas-projects-bb68f8bb.vercel.app/", "https://task-manager-nsc1-m2s571cew-gabriellas-projects-bb68f8bb.vercel.app")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH") // Métodos permitidos
                 .allowedHeaders("*") // Permite todos os headers
                 .allowCredentials(true); // Permite envio de cookies (se necessário)
