@@ -1,9 +1,9 @@
-# TaskPlan - Backend
-Bem-vindo ao repositório do backend do TaskPlan, uma aplicação de listas de tarefas (To-Do List) com funcionalidades completas de CRUD, desenvolvida com Java e Spring Boot para aprendizado e prática em desenvolvimento full-stack.
+# DailyTasks - Backend
+Bem-vindo ao repositório do backend do DailyTasks, uma aplicação de listas de tarefas (To-Do List) com funcionalidades completas de CRUD, desenvolvida com Java e Spring Boot para aprendizado e prática em desenvolvimento full-stack.
 
-🔗 [Repositório do Frontend](https://github.com/gabibento/task-manager)
+🔗 [Repositório do Frontend](https://github.com/gabibento/dailytasks-frontend)
 
-🔗 Acesse o Projeto em funcionamento: [TaskPlan](https://task-manager-nsc1-git-main-gabriellas-projects-bb68f8bb.vercel.app/)
+🔗 Acesse o Projeto em funcionamento: [DailyTasks](https://task-manager-nsc1-git-main-gabriellas-projects-bb68f8bb.vercel.app/)
 
 ## 🚀 Funcionalidades 
 - **Criação de tarefas:** Cria novas tarefas com informações como título, categoria, prioridade e data de vencimento.
