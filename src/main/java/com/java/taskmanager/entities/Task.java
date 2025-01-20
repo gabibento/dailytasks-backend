@@ -33,7 +33,11 @@ public class Task {
 	@ManyToOne
     @JoinColumn(name = "priority_id")
 	private Priority priority;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
 	public Task() {
 	
 	}
