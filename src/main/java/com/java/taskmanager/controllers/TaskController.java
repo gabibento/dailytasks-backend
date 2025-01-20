@@ -1,10 +1,14 @@
 package com.java.taskmanager.controllers;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+import com.java.taskmanager.entities.User;
+import com.java.taskmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,14 +29,21 @@ public class TaskController {
 	
 	@Autowired
 	private TaskService service;
+	@Autowired
+	UserRepository userRepository;
 	
 	@PostMapping
 	public TaskDTO insert(@RequestBody TaskDTO task) {
 		return service.insert(task);
 	}
 	@GetMapping
-	public List<TaskDTO> findAll() {
-		return service.findAll();
+	public List<TaskDTO> getUserTasks(Principal principal) {
+		String username = principal.getName();
+		UserDetails user = userRepository.findByUsername(username);
+		if (user == null) {
+			throw new RuntimeException("User not found");
+		}
+		return service.getUserTasks((User) user);
 	}
 	@GetMapping("/{id}")
 	public Optional<Task> findById(@PathVariable Long id) {

@@ -64,8 +64,8 @@ public class TaskService {
 
 
     @Transactional(readOnly = true)
-    public List<TaskDTO> findAll() {
-        List<Task> tasks = taskRepository.findAll(Sort.by(Sort.Order.asc("priority"))); // Ordenar por prioridade
+    public List<TaskDTO> getUserTasks(User user) {
+        List<Task> tasks = taskRepository.findByUser(user, Sort.by(Sort.Order.asc("priority"))); // Ordenar por prioridade
         return tasks.stream().map(TaskDTO::new).collect(Collectors.toList());
     }
 
