@@ -42,7 +42,7 @@ public class Task {
 	
 	}
 	
-	public Task(Long id, String title, boolean completed, Category category, LocalDate date, Priority priority) {
+	public Task(Long id, String title, boolean completed, Category category, LocalDate date, Priority priority, User user) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -50,6 +50,7 @@ public class Task {
 		this.category = category;
 		this.date = date;
 		this.priority = priority;
+		this.user = user;
 	}
 	
 	public Long getId() {
@@ -94,6 +95,12 @@ public class Task {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
-	
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.java.taskmanager.entities.User;
+import com.java.taskmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,48 @@ public class TaskService {
     
     @Autowired 
     private PriorityRepository priorityRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public TaskDTO insert(TaskDTO dto) {
+        Task task = new Task();
+
+        task.setTitle(dto.getTitle());
+        task.setCompleted(dto.isCompleted());
+
+
+        if (dto.getDate() != null) task.setDate(dto.getDate());
+
+        Optional<Category> categoryOpt = categoryRepository.findById(dto.getCategoryId());
+        if (categoryOpt.isPresent()) task.setCategory(categoryOpt.get());
+        else throw new RuntimeException("Category not found");
+
+        Optional<Priority> priorityOpt = priorityRepository.findById(dto.getPriorityId());
+        if (priorityOpt.isPresent()) task.setPriority(priorityOpt.get());
+        else throw new RuntimeException("Priority not found");
+
+
+        Optional<User> userOpt = userRepository.findById(dto.getUserId());
+        if(userOpt.isPresent()) task.setUser(userOpt.get());
+        else throw new RuntimeException("User not found");
+
+        task = taskRepository.save(task);
+        return new TaskDTO(task);
+    }
+
+
+    @Transactional(readOnly = true)
+    public List<TaskDTO> findAll() {
+        List<Task> tasks = taskRepository.findAll(Sort.by(Sort.Order.asc("priority"))); // Ordenar por prioridade
+        return tasks.stream().map(TaskDTO::new).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Task> findById(Long id) {
+        return taskRepository.findById(id);
+    }
+
 
     public TaskDTO update(Task task) {
         Task entity = taskRepository.save(task);
@@ -70,48 +114,6 @@ public class TaskService {
         // Salvar as alterações
         task = taskRepository.save(task);
         return new TaskDTO(task);
-    }
-
-
-    public TaskDTO insert(TaskDTO dto) {
-        Task task = new Task();
-        
-        task.setTitle(dto.getTitle());
-        task.setCompleted(dto.isCompleted());
-
-     
-        if (dto.getDate() != null) {
-            task.setDate(dto.getDate());  
-        }
-
-        Optional<Category> categoryOpt = categoryRepository.findById(dto.getCategoryId());
-        if (categoryOpt.isPresent()) {
-            task.setCategory(categoryOpt.get());
-        } else {
-            throw new RuntimeException("Category not found");
-        }
-
-        Optional<Priority> priorityOpt = priorityRepository.findById(dto.getPriorityId());
-        if (priorityOpt.isPresent()) {
-            task.setPriority(priorityOpt.get());
-        } else {
-            throw new RuntimeException("Priority not found");
-        }
-
-        task = taskRepository.save(task);
-        return new TaskDTO(task);
-    }
-    
-
-    @Transactional(readOnly = true)
-    public List<TaskDTO> findAll() {
-        List<Task> tasks = taskRepository.findAll(Sort.by(Sort.Order.asc("priority"))); // Ordenar por prioridade
-        return tasks.stream().map(TaskDTO::new).collect(Collectors.toList());
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<Task> findById(Long id) {
-        return Optional.ofNullable(taskRepository.findById(id).orElse(null));
     }
 
     @Transactional
