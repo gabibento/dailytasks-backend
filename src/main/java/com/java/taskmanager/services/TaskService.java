@@ -10,6 +10,9 @@ import com.java.taskmanager.entities.User;
 import com.java.taskmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,9 +57,11 @@ public class TaskService {
         else throw new RuntimeException("Priority not found");
 
 
-        Optional<User> userOpt = userRepository.findById(dto.getUserId());
-        if(userOpt.isPresent()) task.setUser(userOpt.get());
-        else throw new RuntimeException("User not found");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserDetails user = userRepository.findByUsername(username);
+        if (user == null) throw new RuntimeException("User not found");
+        task.setUser((User) user);
 
         task = taskRepository.save(task);
         return new TaskDTO(task);
