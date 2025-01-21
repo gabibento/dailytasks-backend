@@ -70,11 +70,11 @@ src
 
 Aqui estão os principais endpoints disponíveis:  
 
-### 🧑‍💻 Autenticação  
+### Autenticação  
 - **POST /auth/register:** Cadastro de novos usuários.  
 - **POST /auth/login:** Autenticação e geração do token JWT.  
 
-### ✅ Tarefas  
+### Tarefas  
 - **GET /tasks:** Lista todas as tarefas do usuário autenticado.  
 - **POST /tasks:** Cria uma nova tarefa.  
 - **PUT /tasks/{id}:** Atualiza uma tarefa existente.  
