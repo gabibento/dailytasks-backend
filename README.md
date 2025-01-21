@@ -51,15 +51,17 @@ O **DailyTasks** é uma aplicação que permite aos usuários gerenciar suas tar
 ```plaintext  
 src  
 ├── main  
-│   ├── java.com.java.taskmanager
-│     ├── config            # Configurações gerais e CORS
-      ├── controllers       # Controladores REST  
-      ├── dtos              # Classes para transferência de dados
-      ├── entities          # Entidades do banco de dados  
-      ├── repositories      # Interfaces JPA  
-      ├── security          # Configurações e classes de segurança  
-      ├── services          # Regras de negócio  
-      └── TaskManagerApplication.java  # Classe principal da aplicação  
+│   ├── java  
+│   │   └── com.java.taskmanager  
+│   │       ├── config            # Configurações gerais e CORS  
+│   │       ├── controllers       # Controladores REST  
+│   │       ├── dtos              # Classes para transferência de dados  
+│   │       ├── entities          # Entidades do banco de dados  
+│   │       ├── repositories      # Interfaces JPA  
+│   │       ├── security          # Configurações e classes de segurança  
+│   │       ├── services          # Regras de negócio  
+│   │       └── TaskManagerApplication.java  # Classe principal da aplicação  
+
 ```  
 
 ---
