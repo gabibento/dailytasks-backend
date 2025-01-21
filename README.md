@@ -17,6 +17,3 @@ Bem-vindo ao repositório do backend do DailyTasks, uma aplicação de listas de
 - **Java e Spring Boot:** Base do backend, responsável por gerenciar a API e manipular as requisições.
 - **Spring Data JPA:** Gerenciamento da camada de persistência de dados.
 - **MySQL:** Banco de dados relacional para armazenamento das tarefas, categorias e prioridades.
-
-## 💬 Feedback e Contribuição
-Agradecemos por visitar o repositório do backend! Feedbacks e sugestões são bem-vindos. Contribua com melhorias, abra uma Issue ou envie um Pull Request!
