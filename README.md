@@ -82,7 +82,14 @@ Aqui estão os principais endpoints disponíveis:
 - **DELETE /tasks/{id}:** Exclui uma tarefa pelo ID.  
 
 ---
+## 💬 Feedback e Contribuição  
 
+Obrigada por visitar este repositório! Feedbacks e sugestões são bem-vindos. Se você deseja contribuir:  
+1. Faça um *fork* do repositório.  
+2. Crie uma *branch* para sua melhoria (`git checkout -b minha-melhoria`).  
+3. Envie um *pull request* com suas alterações.
+
+--- 
 ## Autor  
 
 <div align="left">  
